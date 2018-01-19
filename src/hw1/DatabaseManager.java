@@ -9,7 +9,7 @@ public class DatabaseManager {
     private DatabaseManager() {
         System.out.println("Instance Created");
     }
-    public static DatabaseManager TheDatabaseMangaer() {
+    public static DatabaseManager TheDatabaseManager() {
         if(instance == null)
             instance = new DatabaseManager();
         else
