@@ -6,8 +6,8 @@ package hw1;
 public class LibraryBook {
     private LBState state;
 
-    public LibraryBook(){
-        this.state = null;
+    public LibraryBook(String string){
+        this.state = Shelved.getInst();
     }
 
     public void setState(LBState state){
@@ -18,18 +18,18 @@ public class LibraryBook {
         return state;
     }
 
-    public void borrow() throws NotAllowedException {
+    public void borrow() {
         state.borrow(this);
     }
 
-    public void returnBook() throws NotAllowedException {
+    public void returnBook() {
         state.returnBook(this);
     }
-    public void shelf() throws NotAllowedException {
+    public void shelf() {
         state.shelf(this);
     }
 
-    public void extend() throws NotAllowedException {
+    public void extend() {
         state.extend(this);
     }
 
@@ -59,26 +59,34 @@ class OnLoan implements LBState {
         return instance;
     }
 
-    @Override
-    public void shelf(LibraryBook book) throws NotAllowedException {
-        throw new NotAllowedException(("shelf in OnLoan"));
+    
+    public void shelf(LibraryBook book) {
+//        try {
+//            throw new NotAllowedException(("shelf in OnLoan"));
+//        } catch (NotAllowedException e) {
+//            e.printStackTrace();
+//        }
     }
 
-    @Override
-    public void borrow(LibraryBook book) throws NotAllowedException {
-        throw new NotAllowedException("borrow in OnLoan");
+    
+    public void borrow(LibraryBook book) {
+//        try {
+//            throw new NotAllowedException("borrow in OnLoan");
+//        } catch (NotAllowedException e) {
+//            e.printStackTrace();
+//        }
     }
 
-    @Override
+    
     public void extend(LibraryBook book) {
         System.out.println("Leaving State OnLoan for State OnLoan");
         book.setState(this);
     }
 
-    @Override
+    
     public void returnBook(LibraryBook book) {
         System.out.println("Leaving State OnLoan for State Returned");
-        book.setState(this);
+        book.setState(Returned.getInst());
     }
 
     public String toString(){
@@ -92,7 +100,7 @@ class Shelved implements LBState {
     //MARK: Shelved Singleton
     private static Shelved instance = null;
     private Shelved() {
-        System.out.println("OnLoan Instance Created");
+//        System.out.println("OnLoan Instance Created");
     }
     public static Shelved getInst() {
         if(instance == null)
@@ -100,26 +108,37 @@ class Shelved implements LBState {
         return instance;
     }
 
-    @Override
-    public void shelf(LibraryBook book) throws NotAllowedException {
-        throw new NotAllowedException("shelf in Shelved");
+    public void shelf(LibraryBook book) {
+//        try {
+//            throw new NotAllowedException("shelf in Shelved");
+//        } catch (NotAllowedException e) {
+//            e.printStackTrace();
+//        }
     }
 
 
-    @Override
     public void borrow(LibraryBook book) {
         System.out.println("Leaving State Shelved for State OnLoan");
-        book.setState(this);
+        book.setState(OnLoan.getInst());
     }
 
-    @Override
-    public void extend(LibraryBook book) throws NotAllowedException {
-        throw new NotAllowedException("extend in Shelved");
+    
+    public void extend(LibraryBook book) {
+//        try {
+//            throw new NotAllowedException("extend in Shelved");
+//        } catch (NotAllowedException e) {
+//            e.printStackTrace();
+//        }
     }
 
-    @Override
-    public void returnBook(LibraryBook book) throws NotAllowedException {
-        throw new NotAllowedException("shelf in Shelved");
+    
+    public void returnBook(LibraryBook book) {
+//        try {
+//            throw new NotAllowedException("returnBook in Shelved");
+//        } catch (NotAllowedException e) {
+//            e.printStackTrace();
+////            e.getCause();
+//        }
     }
 
     public String toString(){
@@ -132,7 +151,7 @@ class Returned implements LBState {
     //MARK: Returned Singleton
     private static Returned instance = null;
     private Returned() {
-        System.out.println("OnLoan Instance Created");
+        System.out.println("Returned Instance Created");
     }
     public static Returned getInst() {
         if(instance == null)
@@ -140,25 +159,37 @@ class Returned implements LBState {
         return instance;
     }
 
-    @Override
+    
     public void shelf(LibraryBook book) {
         System.out.println("Leaving State Returned for State Shelved");
-        book.setState(this);
+        book.setState(Shelved.getInst());
     }
 
-    @Override
-    public void borrow(LibraryBook book) throws NotAllowedException {
-        throw new NotAllowedException("shelf in Shelved");
+    
+    public void borrow(LibraryBook book) {
+//        try {
+//            throw new NotAllowedException("borrow in Returned");
+//        } catch (NotAllowedException e) {
+//            e.printStackTrace();
+//        }
     }
 
-    @Override
-    public void extend(LibraryBook book) throws NotAllowedException {
-        throw new NotAllowedException("shelf in Shelved");
+    
+    public void extend(LibraryBook book) {
+//        try {
+//            throw new NotAllowedException("extend in Returned");
+//        } catch (NotAllowedException e) {
+//            e.printStackTrace();
+//        }
     }
 
-    @Override
-    public void returnBook(LibraryBook book) throws NotAllowedException {
-        throw new NotAllowedException("shelf in Shelved");
+    
+    public void returnBook(LibraryBook book) {
+//        try {
+//            throw new NotAllowedException("shelf in Shelved");
+//        } catch (NotAllowedException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public String toString(){
