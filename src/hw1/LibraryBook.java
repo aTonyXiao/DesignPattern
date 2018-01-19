@@ -100,7 +100,7 @@ class Shelved implements LBState {
     //MARK: Shelved Singleton
     private static Shelved instance = null;
     private Shelved() {
-//        System.out.println("OnLoan Instance Created");
+        System.out.println("Shelved Instance Created");
     }
     public static Shelved getInst() {
         if(instance == null)
