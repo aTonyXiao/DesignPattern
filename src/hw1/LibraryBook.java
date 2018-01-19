@@ -61,20 +61,20 @@ class OnLoan implements LBState {
 
     
     public void shelf(LibraryBook book) {
-//        try {
-//            throw new NotAllowedException(("shelf in OnLoan"));
-//        } catch (NotAllowedException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            throw new NotAllowedException(("shelf in OnLoan"));
+        } catch (NotAllowedException e) {
+            System.out.println(e.toString());
+        }
     }
 
     
     public void borrow(LibraryBook book) {
-//        try {
-//            throw new NotAllowedException("borrow in OnLoan");
-//        } catch (NotAllowedException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            throw new NotAllowedException("borrow in OnLoan");
+        } catch (NotAllowedException e) {
+            System.out.println(e.toString());
+        }
     }
 
     
@@ -109,36 +109,35 @@ class Shelved implements LBState {
     }
 
     public void shelf(LibraryBook book) {
-//        try {
-//            throw new NotAllowedException("shelf in Shelved");
-//        } catch (NotAllowedException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            throw new NotAllowedException("shelf in Shelved");
+        } catch (NotAllowedException e) {
+            System.out.println(e.toString());
+        }
     }
 
 
     public void borrow(LibraryBook book) {
-        System.out.println("Leaving State Shelved for State OnLoan");
+        System.out.println("Leaving State Sheleved for State OnLoan");
         book.setState(OnLoan.getInst());
     }
 
     
     public void extend(LibraryBook book) {
-//        try {
-//            throw new NotAllowedException("extend in Shelved");
-//        } catch (NotAllowedException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            throw new NotAllowedException("extend in Shelved");
+        } catch (NotAllowedException e) {
+            System.out.println(e.toString());
+        }
     }
 
     
     public void returnBook(LibraryBook book) {
-//        try {
-//            throw new NotAllowedException("returnBook in Shelved");
-//        } catch (NotAllowedException e) {
-//            e.printStackTrace();
-////            e.getCause();
-//        }
+        try {
+            throw new NotAllowedException("returnBook in Shelved");
+        } catch (NotAllowedException e) {
+            System.out.println(e.toString());
+        }
     }
 
     public String toString(){
@@ -167,29 +166,29 @@ class Returned implements LBState {
 
     
     public void borrow(LibraryBook book) {
-//        try {
-//            throw new NotAllowedException("borrow in Returned");
-//        } catch (NotAllowedException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            throw new NotAllowedException("borrow in Returned");
+        } catch (NotAllowedException e) {
+            System.out.println(e.toString());
+        }
     }
 
     
     public void extend(LibraryBook book) {
-//        try {
-//            throw new NotAllowedException("extend in Returned");
-//        } catch (NotAllowedException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            throw new NotAllowedException("extend in Returned");
+        } catch (NotAllowedException e) {
+            System.out.println(e.toString());
+        }
     }
 
     
     public void returnBook(LibraryBook book) {
-//        try {
-//            throw new NotAllowedException("shelf in Shelved");
-//        } catch (NotAllowedException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            throw new NotAllowedException("shelf in Shelved");
+        } catch (NotAllowedException e) {
+            System.out.println(e.toString());
+        }
     }
 
     public String toString(){
