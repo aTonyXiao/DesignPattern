@@ -1,16 +1,31 @@
 package hw1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by TonyXiao on 1/18/18.
  */
 public class LibraryBook {
-    private LBState state;
 
-    public LibraryBook(String string){
+    private String bookName;
+    private List<Observer> observers = new ArrayList<Observer>();
+
+    private LBState state;
+    private LBState prev;
+
+    public LibraryBook(String string) {
         this.state = Shelved.getInst();
+        this.bookName = string;
     }
 
-    public void setState(LBState state){
+    //MARK: return the name
+    @Override
+    public String toString() {
+        return bookName;
+    }
+
+    public void setState(LBState state) {
         this.state = state;
     }
 
@@ -33,6 +48,40 @@ public class LibraryBook {
         state.extend(this);
     }
 
+    public void attach(Observer newObserver) {
+        System.out.println(newObserver.name + " is now watching " + bookName);
+        observers.add(newObserver);
+    }
+
+    public void detach(Observer removedObserver) {
+        if (observers.remove(removedObserver))
+            System.out.println(removedObserver.name + " is no longer watching " + bookName);
+    }
+
+    public void notifyAllOberver() {
+        for (Observer observer : observers) {
+            observer.update(this);
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == this)
+            return true;
+
+        if(!(obj instanceof LibraryBook)) {
+            return false;
+        }
+
+        LibraryBook tmp = (LibraryBook) obj;
+
+        return this.toString().equals(tmp.toString());
+    }
+
+    @Override
+    public int hashCode() {
+        return this.toString().hashCode();
+    }
 }
 
 
@@ -87,6 +136,7 @@ class OnLoan implements LBState {
     public void returnBook(LibraryBook book) {
         System.out.println("Leaving State OnLoan for State Returned");
         book.setState(Returned.getInst());
+        book.notifyAllOberver();
     }
 
     public String toString(){
@@ -120,6 +170,7 @@ class Shelved implements LBState {
     public void borrow(LibraryBook book) {
         System.out.println("Leaving State Sheleved for State OnLoan");
         book.setState(OnLoan.getInst());
+        book.notifyAllOberver();
     }
 
     
@@ -162,6 +213,7 @@ class Returned implements LBState {
     public void shelf(LibraryBook book) {
         System.out.println("Leaving State Returned for State Shelved");
         book.setState(Shelved.getInst());
+        book.notifyAllOberver();
     }
 
     

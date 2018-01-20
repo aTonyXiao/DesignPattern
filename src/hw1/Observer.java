@@ -1,13 +1,22 @@
 package hw1;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by TonyXiao on 1/18/18.
  */
-public interface Observer {
+public abstract class Observer {
+
+    protected Map<String, String> bookMapState = new HashMap<String, String>();
+
+    String name;
+    public void update(LibraryBook book) {}
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
-
-
-//Q3. LibraryBook is the subject.
-// ConcreteObservers: Dest Observer, Source Observer
-// Source only see previous states
-// Dest see currently states
