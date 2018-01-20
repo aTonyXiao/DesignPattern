@@ -9,6 +9,7 @@ public class DestObserver extends Observer {
         this.name = str;
     }
 
+    //Print the current state
     @Override
     public void update(LibraryBook book) {
         System.out.println(name + " OBSERVED " + book.toString() + " REACHING STATE: " + book.getState().toString());

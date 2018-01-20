@@ -12,11 +12,10 @@ public class SourceObserver extends Observer {
     @Override
     public void update(LibraryBook book) {
         String bookName = book.toString();
+
         if (bookMapState.containsKey(bookName)) {
-//            System.out.println("before get the book");
             System.out.println(name + " OBSERVED " + bookName + " LEAVING STATE: " + bookMapState.get(bookName));
             bookMapState.replace(bookName, book.getState().toString());
-//            System.out.println("after get the book");
         }else {
             bookMapState.put(bookName, book.getState().toString());
             System.out.println(name + " OBSERVED " + bookName + " LEAVING STATE: UNOBSERVED");
