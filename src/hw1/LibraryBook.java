@@ -134,8 +134,8 @@ class OnLoan implements LBState {
 
     
     public void returnBook(LibraryBook book) {
-        System.out.println("Leaving State OnLoan for State Returned");
         book.setState(Returned.getInst());
+        System.out.println("Leaving State OnLoan for State Returned");
         book.notifyAllOberver();
     }
 
@@ -168,8 +168,8 @@ class Shelved implements LBState {
 
 
     public void borrow(LibraryBook book) {
-        System.out.println("Leaving State Sheleved for State OnLoan");
         book.setState(OnLoan.getInst());
+        System.out.println("Leaving State Shelved for State OnLoan");
         book.notifyAllOberver();
     }
 
@@ -211,8 +211,8 @@ class Returned implements LBState {
 
     
     public void shelf(LibraryBook book) {
-        System.out.println("Leaving State Returned for State Shelved");
         book.setState(Shelved.getInst());
+        System.out.println("Leaving State Returned for State Shelved");
         book.notifyAllOberver();
     }
 
