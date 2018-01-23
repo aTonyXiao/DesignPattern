@@ -49,13 +49,13 @@ public class LibraryBook {
     }
 
     public void attach(Observer newObserver) {
-        System.out.println(newObserver.name + " is now watching " + bookName);
+        System.out.println(newObserver.toString() + " is now watching " + bookName);
         observers.add(newObserver);
     }
 
     public void detach(Observer removedObserver) {
         if (observers.remove(removedObserver))
-            System.out.println(removedObserver.name + " is no longer watching " + bookName);
+            System.out.println(removedObserver.toString() + " is no longer watching " + bookName);
     }
 
     public void notifyAllOberver() {
